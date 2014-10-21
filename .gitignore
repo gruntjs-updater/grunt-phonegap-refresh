@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+node_modules
+npm-debug.log
+dist
+phonegap
+tests/phonegap/dev/www
+tests/phonegap/dev/platforms/ios/www
+tests/phonegap/dev/platforms/ios/Test App/Resources/icons
+tests/phonegap/dev/platforms/ios/Test App/Resources/splash
+tests/phonegap/dev/platforms/android/assets/www
+tests/phonegap/dev/platforms/android/res/drawable

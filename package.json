@@ -1,0 +1,45 @@
+{
+    "name": "grunt-phonegap-refresh",
+    "version": "0.0.1",
+    "description": "Refreshes assets within a project that uses grunt-phonegap without rebuilding the phonegap directory or reinstalling plugins.",
+    "keywords": [
+        "gruntplugin",
+        "phonegap",
+        "grunt-phonegap",
+        "refresh",
+        "asset"
+    ],
+    "homepage": "https://github.com/runspired/grunt-phonegap-refresh",
+    "bugs": "https://github.com/runspired/grunt-phonegap-refresh/issues",
+    "author": {
+        "name": "Chris Thoburn",
+        "url": "http://runspired.com",
+        "email": "runspired@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:runspired/grunt-phonegap-refresh.git"
+    },
+    "license": "unlicence",
+    "scripts": {
+        "test": "grunt"
+    },
+    "dependencies": {
+        "grunt-newer": "^0.7.0",
+        "grunt-contrib-copy": "^0.5.0"
+    },
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-bump": "0.0.16",
+        "grunt-contrib-clean": "~0.5.0",
+        "time-grunt": "~0.4.0",
+        "grunt-simple-mocha": "^0.4.0"
+    },
+    "peerDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-phonegap": "^0.15.2"
+    },
+    "engines": {
+    "node": ">=0.11.13"
+    }
+}
