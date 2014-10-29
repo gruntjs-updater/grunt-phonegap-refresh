@@ -82,6 +82,9 @@ module.exports = function (grunt) {
             grunt.config.merge({
                 clean : {
                     phonegap_refresh : {
+                        options: {
+                            force: true
+                        },
                         files : cleans
                     }
                 }
