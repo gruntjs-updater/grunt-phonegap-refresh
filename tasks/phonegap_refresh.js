@@ -21,6 +21,7 @@ module.exports = function (grunt) {
                 platforms : ['ios'],
                 refreshSource : true,
                 appName : '',
+                mainFile : '',
                 icons : {},
                 splash : {},
                 assets : ''
@@ -49,19 +50,35 @@ module.exports = function (grunt) {
 
         //create the copy task
         if (options.refreshSource) {
-            files.push({
-                expand : true,
-                flatten : false,
-                dest : PATH_WWW,
-                src : '**',
-                cwd : PATH_ASSETS,
-                timestamp : true
-            });
+            files.push(
+                {
+                    expand : true,
+                    flatten : false,
+                    dest : PATH_WWW,
+                    src : options.mainFile,
+                    timestamp : true
+                },
+                {
+                    expand : true,
+                    flatten : false,
+                    dest : PATH_WWW,
+                    src : '**',
+                    cwd : PATH_ASSETS,
+                    timestamp : true
+                }
+            );
         }
 
         //create the ios task
         if (options.platforms.indexOf('ios') !== -1) {
             files.push(
+                {
+                    expand : true,
+                    flatten : false,
+                    dest : PATH_IOS_ASSETS,
+                    src : options.mainFile,
+                    timestamp : true
+                },
                 {
                     expand : true,
                     flatten : false,
@@ -92,6 +109,13 @@ module.exports = function (grunt) {
         //create the android task
         if (options.platforms.indexOf('android') !== -1) {
             files.push(
+                {
+                    expand : true,
+                    flatten : false,
+                    dest : PATH_ANDROID_ASSETS,
+                    src : options.mainFile,
+                    timestamp : true
+                },
                 {
                     expand : true,
                     flatten : false,
