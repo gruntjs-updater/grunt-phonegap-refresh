@@ -1,6 +1,6 @@
 {
   "name": "grunt-phonegap-refresh",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Refreshes assets within a project that uses grunt-phonegap without rebuilding the phonegap directory or reinstalling plugins.",
   "keywords": [
     "gruntplugin",
