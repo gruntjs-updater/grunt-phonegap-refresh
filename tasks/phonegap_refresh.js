@@ -3,7 +3,6 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask("phonegap_refresh", "Update Assets in Phonegap", function () {
 
-        grunt.loadNpmTasks("grunt-newer");
         grunt.loadNpmTasks("grunt-contrib-copy");
         /**
          * Options
@@ -20,6 +19,7 @@ module.exports = function (grunt) {
                 path : 'phonegap',
                 platforms : ['ios'],
                 refreshSource : true,
+                cleanDir : false, //when true newer will not be used and clean will run before hand
                 appName : '',
                 mainFile : '',
                 icons : {},
@@ -46,7 +46,50 @@ module.exports = function (grunt) {
             PATH_ANDROID_SPLASH = PATH_ANDROID_RES + 'drawable/',//TODO: these are wrong, need to be dynamic
             PATH_ANDROID_ICONS = PATH_ANDROID_RES + 'drawable/',
 
-            files = [];
+            files = [],
+            cleans = [];
+
+        //clean the directories if required
+        if (options.cleanDir) {
+            grunt.loadNpmTasks("grunt-contrib-clean");
+
+            //clean the WWW dir but not the config.xml file
+            if (options.refreshSource) {
+                cleans.push(PATH_WWW + '/**', '!' + PATH_WWW + 'config.xml');
+            }
+
+            if (options.platforms.indexOf('ios') !== -1) {
+                cleans.push(
+                    PATH_IOS_SPLASH + '/*',
+                    PATH_IOS_ICONS + '/**',
+                    PATH_IOS_ASSETS + '/**',
+                    '!' + PATH_IOS_ASSETS + '/cordova.js',
+                    '!' + PATH_IOS_ASSETS + '/phonegap.js',
+                    '!' + PATH_IOS_ASSETS + '/cordova_plugins.js'
+                );
+            }
+
+            if (options.platforms.indexOf('android') !== -1) {
+                cleans.push(
+                    PATH_ANDROID_SPLASH + '/*',
+                    PATH_ANDROID_ICONS + '/**',
+                    PATH_ANDROID_ASSETS + '/**',
+                    '!' + PATH_ANDROID_ASSETS + '/cordova.js',
+                    '!' + PATH_ANDROID_ASSETS + '/phonegap.js',
+                    '!' + PATH_ANDROID_ASSETS + '/cordova_plugins.js'
+                );
+            }
+            grunt.config.merge({
+                clean : {
+                    phonegap_refresh : {
+                        files : cleans
+                    }
+                }
+            });
+            grunt.task.run('clean:phonegap_refresh');
+        } else {
+            grunt.loadNpmTasks("grunt-newer");
+        }
 
         //create the copy task
         if (options.refreshSource) {
@@ -151,7 +194,7 @@ module.exports = function (grunt) {
                     }
                 }
             });
-            grunt.task.run('newer:copy:phonegap_refresh');
+            grunt.task.run(options.cleanDir ? 'copy:phonegap_refresh' : 'newer:copy:phonegap_refresh');
         }
     });
 
