@@ -65,8 +65,6 @@ module.exports = function (grunt) {
 
             if (options.platforms.indexOf('ios') !== -1) {
                 cleans.push(
-                    PATH_IOS_SPLASH,
-                    PATH_IOS_ICONS,
                     PATH_IOS_ASSETS + '*',
                     '!' + PATH_IOS_ASSETS + 'cordova.js',
                     '!' + PATH_IOS_ASSETS + 'phonegap.js',
@@ -76,8 +74,6 @@ module.exports = function (grunt) {
 
             if (options.platforms.indexOf('android') !== -1) {
                 cleans.push(
-                    PATH_ANDROID_SPLASH,
-                    PATH_ANDROID_ICONS,
                     PATH_ANDROID_ASSETS + '*',
                     '!' + PATH_ANDROID_ASSETS + 'cordova.js',
                     '!' + PATH_ANDROID_ASSETS + 'phonegap.js',
