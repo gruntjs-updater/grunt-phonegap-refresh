@@ -106,7 +106,7 @@ module.exports = function (grunt) {
                     expand : true,
                     flatten : false,
                     dest : PATH_WWW,
-                    src : options.mainFile,
+                    src : path.basename(options.mainFile),
                     cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
@@ -128,7 +128,7 @@ module.exports = function (grunt) {
                     expand : true,
                     flatten : false,
                     dest : PATH_IOS_ASSETS,
-                    src : options.mainFile,
+                    src : path.basename(options.mainFile),
                     cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
                     expand : true,
                     flatten : false,
                     dest : PATH_ANDROID_ASSETS,
-                    src : options.mainFile,
+                    src : path.basename(options.mainFile),
                     cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
