@@ -1,4 +1,6 @@
 /*global module, require*/
+var path = require("path");
+
 module.exports = function (grunt) {
 
     grunt.registerMultiTask("phonegap_refresh", "Update Assets in Phonegap", function () {
@@ -24,8 +26,11 @@ module.exports = function (grunt) {
                 mainFile : '',
                 icons : {},
                 splash : {},
-                assets : ''
+                assets : '',
+                dest : ''
             }),
+
+            DEST = options.dest ? options.dest + '/' : '',
 
             PATH_ASSETS = options.assets + '/',
             PATH_ASSETS_ICONS_IOS = options.icons.ios + '/',
@@ -102,12 +107,13 @@ module.exports = function (grunt) {
                     flatten : false,
                     dest : PATH_WWW,
                     src : options.mainFile,
+                    cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
                 {
                     expand : true,
                     flatten : false,
-                    dest : PATH_WWW,
+                    dest : PATH_WWW + DEST,
                     src : '**',
                     cwd : PATH_ASSETS,
                     timestamp : true
@@ -123,12 +129,13 @@ module.exports = function (grunt) {
                     flatten : false,
                     dest : PATH_IOS_ASSETS,
                     src : options.mainFile,
+                    cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
                 {
                     expand : true,
                     flatten : false,
-                    dest : PATH_IOS_ASSETS,
+                    dest : PATH_IOS_ASSETS + DEST,
                     src : '**',
                     cwd : PATH_ASSETS,
                     timestamp : true
@@ -160,12 +167,13 @@ module.exports = function (grunt) {
                     flatten : false,
                     dest : PATH_ANDROID_ASSETS,
                     src : options.mainFile,
+                    cwd : path.dirname(options.mainFile),
                     timestamp : true
                 },
                 {
                     expand : true,
                     flatten : false,
-                    dest : PATH_ANDROID_ASSETS,
+                    dest : PATH_ANDROID_ASSETS + DEST,
                     src : '**',
                     cwd : PATH_ASSETS,
                     timestamp : true
