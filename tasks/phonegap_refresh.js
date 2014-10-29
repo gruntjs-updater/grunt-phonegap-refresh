@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                         options: {
                             force: true
                         },
-                        files : cleans
+                        src : cleans
                     }
                 }
             });
